@@ -1,0 +1,145 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{textpos} 
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc} 
+\usepackage{csquotes} 
+\usepackage{amssymb} 
+\usepackage{amsmath}
+\usepackage{enumitem}  
+\usepackage{float} 
+\usepackage{microtype}
+\usepackage{caption}
+
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\usepackage{geometry} 
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\usepackage{hyperref} 
+\usepackage[table,dvipsnames]{xcolor}
+\hypersetup{colorlinks=true, linkcolor=black, citecolor=gray, urlcolor=blue}
+
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}, group-separator = {\,}, group-minimum-digits = 4}
+
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{tocloft}
+\setlength{\cftbeforesecskip}{10pt}
+\setlength{\cftbeforesubsecskip}{8pt}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftaftertoctitleskip}{25pt}
+
+\title{ADAM pour le Deep Learning}
+\author{ACHIQ Aya, CLETZ Laura, EL MAZZOUJI Wahel}
+\date{Octobre 2025}
+
+\begin{document}
+
+\begin{textblock*}{3cm}(0cm,1cm)
+    \includegraphics[width=7cm]{images/FdS.jpg}
+\end{textblock*}
+
+\begin{textblock*}{3cm}(4cm,5cm)
+    \includegraphics[width=8cm]{images/UM.png}
+\end{textblock*}
+
+\begin{textblock*}{3cm}(9cm,1cm)
+    \includegraphics[width=7cm]{images/SSD.png} 
+\end{textblock*}
+
+\vspace{9cm}
+\begin{center}
+\large{Lecture d'article}\\
+\vspace{0.4cm}
+{\LARGE \textbf{ADAM pour le Deep Learning}}\\[1cm]
+\end{center}
+
+\vfill
+\begin{center}
+Groupe : \\ 
+\vspace{0.2cm}
+{\textbf{ACHIQ Aya}}\\
+\vspace{0.2cm}
+{\textbf{CLETZ Laura}}\\ 
+\vspace{0.2cm}
+{\textbf{EL MAZZOUJI Wahel}}\\
+\vspace{0.6cm}
+    
+
+{\large 2 Juin 2025 - 25 Juillet 2025}
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents 
+
+\newpage
+
+\section{Introduction}
+
+Contexte : importance des méthodes d’optimisation stochastique. Problématique : Adam est
+populaire car il converge rapidement, mais sa capacité de généralisation reste discutée. Présenter
+Adam et voir ses limites, grace à une illustration numérique. Est ce que cette méthode est
+meilleure que SGD ?
+
+\section{La méthode Adam (Kingma & Ba, 2014)}
+\subsection{Idée générale}
+
+Adam combine le momentum et une adaptation du taux d’apprentissage inspirée de AdaGrad/RMSProp.
+\subsection{Algorithme}
+
+Expliquer ce que fait l’algorithme, sans rentrer dans les détails (montrer le pseudo code le
+jour de l’oral.)
+
+\subsection{Forces}
+— Convergence rapide et stable.
+— Hyperparamètres par défaut robustes (α = 0.001, β1 = 0.9, β2 = 0.999, ϵ = 10−8
+).
+— Performances solides sur des réseaux de neurones convolutifs et bien d’autres
+
+\section{Limites d’Adam et méthodes adaptatives}
+
+\subsection{Résultats théoriques}
+
+Sur des problèmes surparamétrés, Adam peut converger vers des solutions qui généralisent
+mal, contrairement à SGD qui maximise la marge.
+
+\subsection{Résultats empiriques}
+
+Voir les résultats sur les expériences sur CIFAR-10, War & Peace. Idée : Adam cvg vite mais
+donne de moins bons résultats en test.
+
+\subsection{Implications pratiques}
+
+— SGD reste préférable quand la généralisation est importante.
+— Adam utile pour du reinforcement learning par exemple.
+
+\subsection{Illustration numérique}
+Comparaison Adam vs SGD ? On affiche les résultats mais pas les codes (les mettre en annexe
+à voir)
+
+\section{Conclusion}
+
+On termine par une conclusion, on dit quelques mots sur ADAM (il est énormément utilisé,
+efficace etc...) mais possède des défauts. On fait une ouverture sur des méthodes plus récentes
+peut etre.
+
+\section*{Annexes}
+
+Ici, on mettra le code et peut etre l’algorithme d’ADAM
+
+\end{document}
