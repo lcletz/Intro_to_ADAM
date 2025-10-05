@@ -1,6 +1,27 @@
 
+# Python
 __pycache__/
 *.py[codz]
 *$py.class
 
+# macOS
 .DS_Store
+
+# Gros datasets (éviter les accidents)
+*.csv
+!**/sample_*.csv  # Autoriser les petits échantillons
+data/
+datasets/
+
+# LaTeX temporaires
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.bcf
+*.run.xml
+*.toc

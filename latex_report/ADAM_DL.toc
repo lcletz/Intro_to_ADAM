@@ -6,8 +6,8 @@
 \contentsline {subsection}{\numberline {2.3}Interprétation et propriétés}{2}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Forces et apports de la méthode Adam}{2}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Limites théoriques}{3}{subsection.2.5}%
-\contentsline {section}{\numberline {A}Annexes}{3}{appendix.A}%
-\contentsline {subsection}{\numberline {A.1}Rappels sur les méthodes d’optimisation}{3}{subsection.A.1}%
-\contentsline {subsubsection}{\numberline {A.1.1}Gradient non adaptatif}{3}{subsubsection.A.1.1}%
-\contentsline {subsubsection}{\numberline {A.1.2}Gradient adaptatif}{3}{subsubsection.A.1.2}%
-\contentsline {subsubsection}{\numberline {A.1.3}Momentum}{3}{subsubsection.A.1.3}%
+\contentsline {section}{\numberline {3}Expériences et comparaisons}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Base de données "Credit Card Fraud Detection"}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Base de données ""}{5}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusion}{5}{section.4}%
+\contentsline {section}{\numberline {A}Annexes}{6}{appendix.A}%
