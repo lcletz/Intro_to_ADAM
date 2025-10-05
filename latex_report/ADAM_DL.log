@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.8.4)  6 OCT 2025 00:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.8.4)  6 OCT 2025 00:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -994,55 +994,63 @@ Package pdftex.def Info: images/SSD.png  used on input line 67.
 \tf@toc=\write5
 \openout5 = `ADAM_DL.toc'.
 
+ (./ADAM_DL.lof)
+\tf@lof=\write6
+\openout6 = `ADAM_DL.lof'.
+
+ (./ADAM_DL.lot)
+\tf@lot=\write7
+\openout7 = `ADAM_DL.lot'.
+
 
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.87 \newpage
-              [1]
+l.89 \newpage
+              [1{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
 
-LaTeX Warning: Citation 'kingma2014' on page 2 undefined on input line 102.
-
-
-LaTeX Warning: Citation 'wilson2017' on page 2 undefined on input line 107.
+LaTeX Warning: Citation 'kingma2014' on page 2 undefined on input line 104.
 
 
-LaTeX Warning: Citation 'kingma2014' on page 2 undefined on input line 153.
+LaTeX Warning: Citation 'wilson2017' on page 2 undefined on input line 109.
+
+
+LaTeX Warning: Citation 'kingma2014' on page 2 undefined on input line 155.
 
 
 
-[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
-LaTeX Warning: Citation 'wilson2017' on page 3 undefined on input line 171.
-
-
-LaTeX Warning: Citation 'wilson2017' on page 3 undefined on input line 174.
+LaTeX Warning: Citation 'wilson2017' on page 3 undefined on input line 173.
 
 
-LaTeX Warning: Citation 'wilson2017' on page 3 undefined on input line 180.
+LaTeX Warning: Citation 'wilson2017' on page 3 undefined on input line 176.
 
 
-LaTeX Warning: Citation 'wilson2017' on page 3 undefined on input line 188.
+LaTeX Warning: Citation 'wilson2017' on page 3 undefined on input line 182.
+
+
+LaTeX Warning: Citation 'wilson2017' on page 3 undefined on input line 190.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 192.
+(Font)              <10> on input line 194.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 192.
+(Font)              <7> on input line 194.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 192.
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--193
-
- []
-
+(Font)              <5> on input line 194.
 
 Underfull \hbox (badness 10000) in paragraph at lines 194--195
 
  []
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 195.
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
+
+ []
+
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 197.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1051,7 +1059,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--197
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
 
  []
 
@@ -1061,16 +1069,6 @@ Package microtype Info: Character `029' is missing
 
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 243--244
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 244--245
 
  []
@@ -1080,49 +1078,59 @@ Underfull \hbox (badness 10000) in paragraph at lines 245--246
 
  []
 
-<images/training_error_n10k.png, id=108, 623.6901pt x 396.0396pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
+
+ []
+
+<images/training_error_n10k.png, id=116, 623.6901pt x 396.0396pt>
 File: images/training_error_n10k.png Graphic file (type png)
 <use images/training_error_n10k.png>
-Package pdftex.def Info: images/training_error_n10k.png  used on input line 252.
+Package pdftex.def Info: images/training_error_n10k.png  used on input line 254.
 (pdftex.def)             Requested size: 232.17242pt x 147.42673pt.
-<images/training_loss_n10k.png, id=109, 617.9085pt x 396.0396pt>
+<images/training_loss_n10k.png, id=117, 617.9085pt x 396.0396pt>
 File: images/training_loss_n10k.png Graphic file (type png)
 <use images/training_loss_n10k.png>
-Package pdftex.def Info: images/training_loss_n10k.png  used on input line 258.
+Package pdftex.def Info: images/training_loss_n10k.png  used on input line 260.
 (pdftex.def)             Requested size: 232.17242pt x 148.80453pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 268--269
 
  []
 
 
 
 [4 <./images/training_error_n10k.png> <./images/training_loss_n10k.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 267--268
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
 
  []
 
-<images/test_error_n10k.png, id=121, 518.1759pt x 382.3083pt>
+<images/test_error_n10k.png, id=126, 518.1759pt x 382.3083pt>
 File: images/test_error_n10k.png Graphic file (type png)
 <use images/test_error_n10k.png>
-Package pdftex.def Info: images/test_error_n10k.png  used on input line 274.
+Package pdftex.def Info: images/test_error_n10k.png  used on input line 276.
 (pdftex.def)             Requested size: 232.17242pt x 171.29628pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 275.
-<images/test_error_n100k.png, id=122, 518.1759pt x 382.3083pt>
+(Font)              <10.95> on input line 277.
+<images/test_error_n100k.png, id=127, 518.1759pt x 382.3083pt>
 File: images/test_error_n100k.png Graphic file (type png)
 <use images/test_error_n100k.png>
-Package pdftex.def Info: images/test_error_n100k.png  used on input line 280.
+Package pdftex.def Info: images/test_error_n100k.png  used on input line 282.
 (pdftex.def)             Requested size: 232.17242pt x 171.29628pt.
 
 
 [5 <./images/test_error_n10k.png> <./images/test_error_n100k.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 353--355
+Underfull \hbox (badness 10000) in paragraph at lines 355--357
 
  []
 
 
-LaTeX Warning: Empty bibliography on input line 356.
+LaTeX Warning: Empty bibliography on input line 358.
 
 
 
@@ -1147,18 +1155,18 @@ Package logreq Info: Writing requests to 'ADAM_DL.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30085 strings out of 473190
- 579645 string characters out of 5715801
- 1511944 words of memory out of 5000000
- 52844 multiletter control sequences out of 15000+600000
+ 30099 strings out of 473190
+ 579829 string characters out of 5715801
+ 1511947 words of memory out of 5000000
+ 52852 multiletter control sequences out of 15000+600000
  634259 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,9n,81p,1092b,2815s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on ADAM_DL.pdf (7 pages, 553758 bytes).
+Output written on ADAM_DL.pdf (7 pages, 554396 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 157 compressed objects within 2 object streams
+ 214 PDF objects out of 1000 (max. 8388607)
+ 161 compressed objects within 2 object streams
  24 named destinations out of 1000 (max. 500000)
  41604 words of extra memory for PDF output out of 42996 (max. 10000000)
 
