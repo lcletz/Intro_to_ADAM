@@ -1,12 +1,13 @@
 \babel@toc {french}{}\relax 
-\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
-\contentsline {section}{\numberline {2}La méthode Adam (Kingma & Ba, 2014)}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Idée générale}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Algorithme}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Forces}{3}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Limites d’Adam et méthodes adaptatives}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Résultats théoriques}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Résultats empiriques}{3}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Implications pratiques}{3}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Illustration numérique}{3}{subsection.3.4}%
-\contentsline {section}{\numberline {4}Conclusion}{4}{section.4}%
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Adam et les méthodes adaptatives}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Contexte et motivation}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Principe de l’algorithme Adam}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Interprétation et propriétés}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Forces et apports de la méthode Adam}{2}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Limites théoriques}{3}{subsection.2.5}%
+\contentsline {section}{\numberline {A}Annexes}{3}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Rappels sur les méthodes d’optimisation}{3}{subsection.A.1}%
+\contentsline {subsubsection}{\numberline {A.1.1}Gradient non adaptatif}{3}{subsubsection.A.1.1}%
+\contentsline {subsubsection}{\numberline {A.1.2}Gradient adaptatif}{3}{subsubsection.A.1.2}%
+\contentsline {subsubsection}{\numberline {A.1.3}Momentum}{3}{subsubsection.A.1.3}%

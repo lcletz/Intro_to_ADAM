@@ -1,9 +1,11 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage{lmodern} % police vectorielle compatible microtype
+\usepackage[protrusion=true, expansion=true]{microtype}
 
 \usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{subcaption}
-\usepackage{textpos} 
+%\usepackage{textpos} 
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc} 
@@ -14,7 +16,7 @@
 \usepackage{float} 
 \usepackage{microtype}
 \usepackage{caption}
-
+\usepackage[absolute,overlay]{textpos}
 \usepackage{titlesec}
 \setcounter{secnumdepth}{4}
 \titleformat{\paragraph}
@@ -32,9 +34,6 @@
 \usepackage{siunitx}
 \sisetup{output-decimal-marker = {,}, group-separator = {\,}, group-minimum-digits = 4}
 
-\usepackage[style=apa, backend=biber]{biblatex}
-\addbibresource{references.bib}
-
 \usepackage{tocloft}
 \setlength{\cftbeforesecskip}{10pt}
 \setlength{\cftbeforesubsecskip}{8pt}
@@ -47,99 +46,184 @@
 
 \begin{document}
 
-\begin{textblock*}{3cm}(0cm,1cm)
-    \includegraphics[width=7cm]{images/FdS.jpg}
-\end{textblock*}
+\begin{titlepage}
+\centering
 
-\begin{textblock*}{3cm}(4cm,5cm)
-    \includegraphics[width=8cm]{images/UM.png}
-\end{textblock*}
+\begin{minipage}{0.3\textwidth}
+    \includegraphics[width=\linewidth]{images/FdS.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+    \includegraphics[width=\linewidth]{images/UM.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+    \includegraphics[width=\linewidth]{images/SSD.png}
+\end{minipage}
 
-\begin{textblock*}{3cm}(9cm,1cm)
-    \includegraphics[width=7cm]{images/SSD.png} 
-\end{textblock*}
+\vspace{3cm}
 
-\vspace{9cm}
-\begin{center}
-\large{Lecture d'article}\\
-\vspace{0.4cm}
-{\LARGE \textbf{ADAM pour le Deep Learning}}\\[1cm]
-\end{center}
+{\Large Lecture d'article}\\[0.4cm]
+{\LARGE \textbf{ADAM pour le Deep Learning}}\\[1.2cm]
+
+{\large Groupe :}\\[0.3cm]
+\textbf{ACHIQ Aya}\\
+\textbf{CLETZ Laura}\\
+\textbf{EL MAZZOUJI Wahel}\\[1.5cm]
+
+{\large Octobre 2025}
 
 \vfill
-\begin{center}
-Groupe : \\ 
-\vspace{0.2cm}
-{\textbf{ACHIQ Aya}}\\
-\vspace{0.2cm}
-{\textbf{CLETZ Laura}}\\ 
-\vspace{0.2cm}
-{\textbf{EL MAZZOUJI Wahel}}\\
-\vspace{0.6cm}
-    
-
-{\large 2 Juin 2025 - 25 Juillet 2025}
-\end{center}
-
-\thispagestyle{empty}
+\end{titlepage}
 
 \newpage
-
-\tableofcontents 
-
+\tableofcontents
 \newpage
+
+
 
 \section{Introduction}
+% À compléter
 
-Contexte : importance des méthodes d’optimisation stochastique. Problématique : Adam est
-populaire car il converge rapidement, mais sa capacité de généralisation reste discutée. Présenter
-Adam et voir ses limites, grace à une illustration numérique. Est ce que cette méthode est
-meilleure que SGD ?
+\section{Adam et les méthodes adaptatives}
 
-\section{La méthode Adam (Kingma & Ba, 2014)}
-\subsection{Idée générale}
+\subsection{Contexte et motivation}
 
-Adam combine le momentum et une adaptation du taux d’apprentissage inspirée de AdaGrad/RMSProp.
-\subsection{Algorithme}
+L'apprentissage profond repose sur la minimisation stochastique d'une fonction de coût
+bruitée. La descente de gradient stochastique et ses variantes à momentum sont simples
+mais sensibles au choix du taux d'apprentissage et instables en présence de gradients bruités
+ou clairsemés. Pour pallier ces limites, Adam (\emph{Adaptive Moment Estimation}) a été
+proposé par Kingma et Ba (2014). L'idée est de combiner les avantages du momentum et de
+l'adaptation du taux d'apprentissage, comme dans AdaGrad et RMSProp, afin d'obtenir une
+descente plus rapide et plus stable.
 
-Expliquer ce que fait l’algorithme, sans rentrer dans les détails (montrer le pseudo code le
-jour de l’oral.)
+Cependant, plusieurs travaux ont montré que la rapidité de convergence des méthodes
+adaptatives ne garantit pas toujours une meilleure généralisation. Wilson et al. (2017)
+soulignent que ces méthodes peuvent conduire à des minima différents de ceux trouvés par
+SGD, parfois moins performants sur les données de test.
 
-\subsection{Forces}
-— Convergence rapide et stable.
-— Hyperparamètres par défaut robustes (α = 0.001, β1 = 0.9, β2 = 0.999, ϵ = 10−8
-).
-— Performances solides sur des réseaux de neurones convolutifs et bien d’autres
+\subsection{Principe de l’algorithme Adam}
 
-\section{Limites d’Adam et méthodes adaptatives}
+L’algorithme Adam combine deux idées
+majeures : l’accumulation du momentum et l’adaptation du taux
+d’apprentissage pour chaque paramètre. À chaque itération $t$, le gradient stochastique
+$g_t = \nabla_\theta f_t(\theta_{t-1})$ sert à mettre à jour deux
+moyennes mobiles :
+$m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t$ et
+$v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2$,
+où $m_t$ représente la moyenne et $v_t$ la variance du gradient. Les coefficients usuels sont
+$\beta_1=0.9$ et $\beta_2=0.999$. Comme $m_0$ et $v_0$ sont initialisés
+à zéro, Kingma et Ba introduisent une correction de biais :
+$\hat{m}_t = m_t/(1-\beta_1^t)$ et
+$\hat{v}_t = v_t/(1-\beta_2^t)$.
 
-\subsection{Résultats théoriques}
+La mise à jour s’écrit
+\[
+\theta_t = \theta_{t-1} - \alpha\,\frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\varepsilon},
+\]
+où $\alpha$ est le taux d’apprentissage et $\varepsilon\approx10^{-8}$ évite la division par zéro.
+Cette règle combine la direction moyenne du gradient (momentum) et une
+normalisation par la variance locale, assurant une descente rapide et
+stable face aux variations d’échelle.
 
-Sur des problèmes surparamétrés, Adam peut converger vers des solutions qui généralisent
-mal, contrairement à SGD qui maximise la marge.
+\subsection{Interprétation et propriétés}
 
-\subsection{Résultats empiriques}
+Adam combine momentum et adaptation du pas : $m_t$ lisse la direction de
+descente, tandis que $v_t$ ajuste le pas selon la variance locale du
+gradient, réduisant les oscillations et stabilisant l’entraînement.
 
-Voir les résultats sur les expériences sur CIFAR-10, War & Peace. Idée : Adam cvg vite mais
-donne de moins bons résultats en test.
+Adam présente plusieurs propriétés remarquables. Il est invariant à
+l’échelle des gradients, son pas est borné et contrôlé par $\alpha$, et
+il reste peu sensible aux hyperparamètres. Kingma et Ba montrent, dans
+le cadre convexe, un regret en $\mathcal{O}(\sqrt{T})$, équivalent à
+AdaGrad mais plus stable sur des objectifs non stationnaires.
 
-\subsection{Implications pratiques}
+Ces propriétés expliquent la popularité d’Adam pour l’apprentissage de
+réseaux profonds, où les gradients peuvent être bruités, corrélés ou
+fortement déséquilibrés selon les paramètres.
 
-— SGD reste préférable quand la généralisation est importante.
-— Adam utile pour du reinforcement learning par exemple.
+\subsection{Forces et apports de la méthode Adam}
 
-\subsection{Illustration numérique}
-Comparaison Adam vs SGD ? On affiche les résultats mais pas les codes (les mettre en annexe
-à voir)
+Les expériences de Kingma et Ba (2014) sur diverses tâches, telles que
+la régression logistique et l’apprentissage de réseaux profonds,
+montrent qu’Adam combine la rapidité d’AdaGrad et la stabilité
+de RMSProp. Sur MNIST, il atteint une faible perte en peu d’itérations
+et une précision comparable à SGD avec momentum, sans réglage manuel du
+taux d’apprentissage.
 
-\section{Conclusion}
+L’algorithme se distingue par sa robustesse aux hyperparamètres, sa rapidité de convergence et son efficacité face à des gradients bruités. Les valeurs par défaut
+($\alpha\!=\!0.001$, $\beta_1\!=\!0.9$, $\beta_2\!=\!0.999$,
+$\varepsilon\!=\!10^{-8}$) offrent de bonnes performances dans la
+plupart des contextes, ce qui explique sa popularité comme méthode
+d’optimisation de référence en apprentissage profond.
 
-On termine par une conclusion, on dit quelques mots sur ADAM (il est énormément utilisé,
-efficace etc...) mais possède des défauts. On fait une ouverture sur des méthodes plus récentes
-peut etre.
+Enfin, la variante AdaMax, fondée sur la norme infinie, améliore la stabilité numérique tout en conservant la simplicité d’Adam.
 
-\section*{Annexes}
+\subsection{Limites théoriques}
 
-Ici, on mettra le code et peut etre l’algorithme d’ADAM
+Bien qu’efficace en pratique, Adam présente une généralisation
+limitée. Wilson et al.\ (2017) montrent que les méthodes adaptatives
+diffèrent des approches non adaptatives comme SGD.
+
+Théoriquement, Wilson et al.\ (2017) montrent que SGD converge vers une
+\emph{solution à norme minimale} ($\|w\|_2$ faible), gage d’une bonne
+généralisation, tandis que les méthodes adaptatives tendent vers des
+\emph{solutions à norme infinie minimale} ($\|w\|_\infty$ faible),
+souvent associées à un surapprentissage.
+
+Wilson et al.\ (2017) montrent qu’Adam peut converger vers des solutions
+mal généralisées, alors que SGD atteint la solution optimale, ce qui
+explique la moindre généralisation des méthodes adaptatives.
+
+Ces travaux soulignent ainsi le compromis fondamental entre rapidité d’apprentissage et capacité de généralisation propre aux méthodes adaptatives.
+
+
+
+\appendix
+\section{Annexes}
+
+\subsection{Rappels sur les méthodes d’optimisation}
+
+\subsubsection{Gradient non adaptatif}
+
+Une méthode non adaptative utilise un taux d'apprentissage fixe $\eta$ identique pour tous les paramètres
+et à toutes les itérations :
+\[
+\theta_{t+1} = \theta_t - \eta \, g_t,
+\]
+où $g_t = \nabla_\theta f_t(\theta_t)$ est le gradient de la fonction de coût.
+
+\subsubsection{Gradient adaptatif}
+
+Une méthode adaptative ajuste dynamiquement le taux d’apprentissage
+pour chaque paramètre en fonction de l’historique de ses gradients.
+Les paramètres dont les gradients varient fortement reçoivent un pas plus
+petit, ceux dont les gradients sont faibles un pas plus grand :
+\[
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{v_t} + \epsilon} \, g_t,
+\]
+avec $v_t$ la moyenne des carrés des gradients passés.
+
+\subsubsection{Momentum}
+Le momentum ajoute une mémoire du gradient passé pour lisser la
+trajectoire de la descente :
+\[
+m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t.
+\]
+Ce mécanisme stabilise la descente et permet d’atteindre plus facilement le minimum.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{kingma2014}
+D.~P. Kingma and J.~Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock \emph{arXiv preprint arXiv:1412.6980}, 2014.
+
+\bibitem{wilson2017}
+A.~C. Wilson, R.~Roelofs, M.~Stern, N.~Srebro, and B.~Recht.
+\newblock The marginal value of adaptive gradient methods in machine learning.
+\newblock \emph{arXiv preprint arXiv:1705.08292}, 2017.
+\end{thebibliography}
+
 
 \end{document}
