@@ -8,6 +8,9 @@
 \contentsline {subsection}{\numberline {2.5}Limites théoriques}{3}{subsection.2.5}%
 \contentsline {section}{\numberline {3}Expériences et comparaisons}{3}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Base de données "Credit Card Fraud Detection"}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Base de données ""}{5}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Conclusion}{5}{section.4}%
-\contentsline {section}{\numberline {A}Annexes}{6}{appendix.A}%
+\contentsline {subsection}{\numberline {3.2}Base de données ""}{4}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusion}{4}{section.4}%
+\contentsline {section}{\numberline {A}Annexes}{5}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Graphiques}{5}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Tableaux}{5}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Définitions et formules}{6}{subsection.A.3}%

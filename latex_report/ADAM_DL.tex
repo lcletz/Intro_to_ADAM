@@ -1,22 +1,25 @@
 \documentclass[a4paper,12pt]{article}
-\usepackage{lmodern} % police vectorielle compatible microtype
-\usepackage[protrusion=true, expansion=true]{microtype}
 
-\usepackage{multirow}
-\usepackage{graphicx}
-\usepackage{subcaption}
-%\usepackage{textpos} 
+% Packages essentiels
+\usepackage{lmodern} % police vectorielle
+\usepackage[protrusion=true, expansion=true]{microtype}
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc} 
-\usepackage[utf8]{inputenc} 
-\usepackage{csquotes} 
-\usepackage{amssymb} 
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes} % recommandé avec biblatex 
+
+% Math et symboles
 \usepackage{amsmath}
-\usepackage{enumitem}  
+\usepackage{amssymb} 
+
+% Figures et tableaux
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multirow}
 \usepackage{float} 
-\usepackage{microtype}
-\usepackage{caption}
-\usepackage[absolute,overlay]{textpos}
+
+% Mise en page
+\usepackage{geometry} 
 \usepackage{titlesec}
 \setcounter{secnumdepth}{4}
 \titleformat{\paragraph}
@@ -24,11 +27,10 @@
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
-\usepackage{geometry} 
 \geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
 
-\usepackage{hyperref} 
 \usepackage[table,dvipsnames]{xcolor}
+\usepackage{hyperref} 
 \hypersetup{colorlinks=true, linkcolor=black, citecolor=gray, urlcolor=blue}
 
 \usepackage{siunitx}
@@ -87,8 +89,6 @@
 \listoffigures
 \listoftables
 \newpage
-
-
 
 \section{Introduction}
 % À compléter
@@ -196,7 +196,66 @@ Pour comparer les performances des quatre méthodes citées, nous commençons av
 Nous gardons les variables "V14" et "Amount" comme variables explicatives, elles représentent respectivement les résultats d'une ACP (Analyse en Composantes Principales) anonymisant ainsi les données d'utilisation et d'utilisateur.ice de la carte qui sont fortement corrélés à la fraude, et le montant de la transaction. La variable "Class" est la variable réponse où $0$ signifie que la transaction est légitime et $1$ est une fraude. \\
 \par Nous utilisons un réseau de neurones simple avec une couche cachée de 16 neurones et une fonction d'activation ReLU (cf cours GLM). La fonction de perte "\texttt{binary cross-entropy}" est en fait celle associée à la régression logistique (cf annexes \ref{annexes}).
 \par Nous entraînons le modèle avec les quatre méthodes d'optimisation : Adam, SGD, Adagrad et RMSprop, en utilisant les paramètres par défaut recommandés dans la littérature, à savoir un taux d'apprentissage $\eta=0.001$.\\
-\par Nous trouvons pour des échantillons de taille $n=10\,000$ et $n=100\,000$ les résultats suivants :
+
+\par Les tableaux~\ref{tab:results_10k} et~\ref{tab:results_100k} révèlent plusieurs tendances intéressantes : \\
+\par Sur un $10\,000$-échantillon, Adagrad obtient la meilleure perte de test (0.0035), tandis que SGD et RMSprop partagent la meilleure précision (99.80\%). Les différences restent néanmoins marginales. \\
+\par Sur un $100\,000$-échantillon, Adam et SGD dominent avec une précision remarquable de 99.91\% et des erreurs de test identiques (0.09\%). SGD présente légèrement la meilleure perte (0.0033). Adagrad et RMSprop montrent des performances dégradées sur ce plus grand échantillon.\\
+\par Il semble ainsi que l'augmentation de la taille d'échantillon favorise nettement Adam et SGD, confirmant leur robustesse sur des datasets plus importants, tandis que les méthodes adaptatives classiques (Adagrad, RMSprop) semblent moins performantes avec plus de données.\\
+
+Graphiquement, ces observations se confirment à travers l'évolution des métriques d'entraînement et de test. La figure~\ref{fig:training_comparison} illustre l'évolution de l'erreur d'entraînement (cf annexes \ref{annexes}) au cours des \textit{epochs}, révélant les vitesses de convergence distinctes de chaque optimiseur.\\
+\par On observe qu'Adagrad converge rapidement vers une faible erreur initiale, mais stagne ensuite, tandis qu'Adam et SGD continuent à améliorer l'erreur au fil des \textit{epochs}. RMSprop montre une convergence plus lente mais régulière.\\
+
+La figure~\ref{fig:test_results} présente une synthèse des performances finales de test, mettant en évidence les différences de généralisation entre les méthodes selon la taille de l'échantillon.\\
+\par Ces visualisations confirment que SGD et Adam maintiennent des performances robustes à travers les différentes tailles d'échantillon, tandis qu'Adagrad, malgré une convergence rapide sur le petit échantillon, voit ses performances se dégrader significativement avec l'augmentation des données.
+
+\subsection{Base de données ""}
+
+\section{Conclusion}
+%À compléter
+
+\newpage
+
+\appendix
+\section{Annexes}
+\label{annexes}
+
+\subsection{Graphiques}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{images/training_error_n10k.png}
+    \caption[Erreur d'entraînement (n=10k)]{Erreur d'entraînement}
+    \label{fig:training_10k}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{images/training_loss_n10k.png}
+    \caption[Perte d'entraînement (n=10k)]{Perte d'entraînement}
+    \label{fig:loss_10k}
+\end{subfigure}
+\caption{Comparaison des métriques d'entraînement pour $n=10\,000$}
+\label{fig:training_comparison}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{images/test_error_n10k.png}
+    \caption[Erreurs de test (n=10k)]{Erreurs de test ($n=10\,000$)}
+    \label{fig:test_10k}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{images/test_error_n100k.png}
+    \caption[Erreurs de test (n=100k)]{Erreurs de test ($n=100\,000$)}
+    \label{fig:test_100k}
+\end{subfigure}
+\caption{Comparaison des erreurs de test finales}
+\label{fig:test_results}
+\end{figure}
+
+\subsection{Tableaux}
 
 \begin{table}[H]
 \centering
@@ -241,119 +300,59 @@ RMSprop   & 0.0059 & 0.9987 & 1.30 \\
 \label{tab:results_100k}
 \end{table}
 
-\par Les tableaux~\ref{tab:results_10k} et~\ref{tab:results_100k} révèlent plusieurs tendances intéressantes : \\
-\par Sur un $10\,000$-échantillon, Adagrad obtient la meilleure perte de test (0.0035), tandis que SGD et RMSprop partagent la meilleure précision (99.80\%). Les différences restent néanmoins marginales. \\
-\par Sur un $100\,000$-échantillon, Adam et SGD dominent avec une précision remarquable de 99.91\% et des erreurs de test identiques (0.09\%). SGD présente légèrement la meilleure perte (0.0033). Adagrad et RMSprop montrent des performances dégradées sur ce plus grand échantillon.\\
-\par Il semble ainsi que l'augmentation de la taille d'échantillon favorise nettement Adam et SGD, confirmant leur robustesse sur des datasets plus importants, tandis que les méthodes adaptatives classiques (Adagrad, RMSprop) semblent moins performantes avec plus de données.\\
+\subsection{Définitions et formules}
 
-Graphiquement, ces observations se confirment à travers l'évolution des métriques d'entraînement et de test. La figure~\ref{fig:training_comparison} illustre l'évolution de l'erreur d'entraînement au cours des \textit{epochs}, révélant les vitesses de convergence distinctes de chaque optimiseur :
-
-\begin{figure}[H]
-\centering
-\begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{images/training_error_n10k.png}
-    \caption{Erreur d'entraînement}
-    \label{fig:training_10k}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{images/training_loss_n10k.png}
-    \caption{Perte d'entraînement}
-    \label{fig:loss_10k}
-\end{subfigure}
-\caption{Comparaison des métriques d'entraînement pour $n=10\,000$}
-\label{fig:training_comparison}
-\end{figure}
-
-L'erreur d'entraînement est la proportion de prédictions incorrectes sur l'ensemble d'entraînement, soit $1-$ la précision durant l'entraînement (\textit{training accuracy}), tandis que la perte mesure la qualité globale des prédictions. \\
-\par On observe qu'Adagrad converge rapidement vers une faible erreur initiale, mais stagne ensuite, tandis qu'Adam et SGD continuent à améliorer l'erreur au fil des \textit{epochs}. RMSprop montre une convergence plus lente mais régulière.\\
-
-La figure~\ref{fig:test_results} présente une synthèse des performances finales de test, mettant en évidence les différences de généralisation entre les méthodes selon la taille de l'échantillon :
-
-\begin{figure}[H]
-\centering
-\begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{images/test_error_n10k.png}
-    \caption{Erreurs de test ($n=10\,000$)}
-    \label{fig:test_10k}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{images/test_error_n100k.png}
-    \caption{Erreurs de test ($n=100\,000$)}
-    \label{fig:test_100k}
-\end{subfigure}
-\caption{Comparaison des erreurs de test finales}
-\label{fig:test_results}
-\end{figure}
-
-Ces visualisations confirment que SGD et Adam maintiennent des performances robustes à travers les différentes tailles d'échantillon, tandis qu'Adagrad, malgré une convergence rapide sur le petit échantillon, voit ses performances se dégrader significativement avec l'augmentation des données.
-
-\subsection{Base de données ""}
-
-\section{Conclusion}
-%À compléter
-
-\newpage
-
-\appendix
-\section{Annexes}
-\label{annexes}
-
-\subsection*{Gradient non adaptatif}
-
-Une méthode non adaptative utilise un taux d'apprentissage fixe $\eta$ identique pour tous les paramètres
+\noindent\textbf{Gradient non adaptatif}\\
+\par Une méthode non adaptative utilise un taux d'apprentissage fixe $\eta$ identique pour tous les paramètres
 et à toutes les itérations :
 \[
 \theta_{t+1} = \theta_t - \eta \, g_t,
 \]
-où $g_t = \nabla_\theta f_t(\theta_t)$ est le gradient de la fonction de coût.
+où $g_t = \nabla_\theta f_t(\theta_t)$ est le gradient de la fonction de coût.\\
 
-\subsection*{Gradient adaptatif}
-
-Une méthode adaptative ajuste dynamiquement le taux d’apprentissage
+\noindent\textbf{Gradient adaptatif}\\
+\par Une méthode adaptative ajuste dynamiquement le taux d’apprentissage
 pour chaque paramètre en fonction de l’historique de ses gradients.
 Les paramètres dont les gradients varient fortement reçoivent un pas plus
 petit, ceux dont les gradients sont faibles un pas plus grand :
 \[
 \theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{v_t} + \epsilon} \, g_t,
 \]
-avec $v_t$ la moyenne des carrés des gradients passés.
+avec $v_t$ la moyenne des carrés des gradients passés.\\
 
-\subsection*{Momentum}
-
-Le momentum ajoute une mémoire du gradient passé pour lisser la
+\noindent\textbf{Momentum}\\
+\par Le momentum ajoute une mémoire du gradient passé pour lisser la
 trajectoire de la descente :
 \[
 m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t.
 \]
-Ce mécanisme stabilise la descente et permet d’atteindre plus facilement le minimum.
+Ce mécanisme stabilise la descente et permet d’atteindre plus facilement le minimum.\\
 
-\subsection*{Adagrad}
-
-Adagrad adapte le taux d’apprentissage en fonction de l’historique des
+\noindent\textbf{Adagrad}\\
+\par Adagrad adapte le taux d’apprentissage en fonction de l’historique des
 gradients :
 \[v_t = v_{t-1} + g_t^2,
 \]
 où $v_t$ est la somme des carrés des gradients. La mise à jour devient
 \[\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{v_t} + \epsilon} \, g_t.
-\]
+\] \\
 
-\subsection*{RMSProp}
-
-RMSProp modifie Adagrad en utilisant une moyenne mobile exponentielle
+\noindent\textbf{RMSprop}\\
+\par RMSProp modifie Adagrad en utilisant une moyenne mobile exponentielle
 des carrés des gradients :
 \[v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2,
 \]
-avec $\beta_2$ proche de 1. La mise à jour est la même.
+avec $\beta_2$ proche de 1. La mise à jour est la même.\\
 
-\subsection*{Régression logistique}
-
-La régression logistique est un type de régression dans les cas binaires. Sa fonction de perte est définit par 
+\noindent\textbf{Régression logistique}\\
+\par La régression logistique est un type de régression dans les cas binaires. Sa fonction de perte est définit par 
 $$
 L(y, \hat{y}) = -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})]
 $$  
 avec $y\in{0,1}$ et $\hat{y}=\sigma(z)$ la probabilité prédite via la fonction sigmoid $\sigma(z) = 1/(1 + e^{-z})$. \\
+
+\noindent\textbf{Erreur d'entraînement et perte}\\
+\par L'erreur d'entraînement est la proportion de prédictions incorrectes sur l'ensemble d'entraînement, soit $1-$ la précision durant l'entraînement (\textit{training accuracy}), tandis que la perte mesure la qualité globale des prédictions.\\
 
 \printbibliography
 
