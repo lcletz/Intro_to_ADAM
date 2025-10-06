@@ -7,6 +7,8 @@
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes} % recommandé avec biblatex 
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
 % Math et symboles
 \usepackage{amsmath}
@@ -91,7 +93,28 @@
 \newpage
 
 \section{Introduction}
-% À compléter
+
+L’optimisation occupe une place essentielle dans l’apprentissage
+profond, où la descente de gradient stochastique et ses variantes à
+momentum ont longtemps été les méthodes de référence. Cependant, ces
+approches présentent certaines limites, car leur convergence peut être
+lente et leur performance dépend fortement du choix du taux
+d’apprentissage, souvent difficile à ajuster.
+
+Pour pallier ces difficultés, des méthodes dites adaptatives ont été
+proposées, comme AdaGrad et RMSProp, qui ajustent automatiquement le pas
+d’apprentissage pour chaque paramètre. Parmi elles, l’algorithme Adam
+\cite{kingma2014} s’est imposé comme un compromis efficace entre
+rapidité et stabilité, devenant l’une des méthodes les plus utilisées en
+apprentissage profond.
+
+Néanmoins, plusieurs travaux récents, notamment ceux de \cite{wilson2017}, ont remis en question la supériorité généralisée de ces
+approches adaptatives. Ce rapport s’interroge sur la validité de cette
+hypothèse et cherche à déterminer si les méthodes adaptatives telles
+qu’Adam sont réellement plus performantes que les méthodes non
+adaptatives comme SGD, tant en termes de convergence que de
+généralisation.
+
 
 \section{Adam et les méthodes adaptatives}
 
@@ -133,6 +156,8 @@ où $\alpha$ est le taux d’apprentissage et $\varepsilon\approx10^{-8}$ évite
 Cette règle combine la direction moyenne du gradient (momentum) et une
 normalisation par la variance locale, assurant une descente rapide et
 stable face aux variations d’échelle.
+L’algorithme complet est présenté en Annexe pour référence.
+
 
 \subsection{Interprétation et propriétés}
 
@@ -353,6 +378,36 @@ avec $y\in{0,1}$ et $\hat{y}=\sigma(z)$ la probabilité prédite via la fonction
 
 \noindent\textbf{Erreur d'entraînement et perte}\\
 \par L'erreur d'entraînement est la proportion de prédictions incorrectes sur l'ensemble d'entraînement, soit $1-$ la précision durant l'entraînement (\textit{training accuracy}), tandis que la perte mesure la qualité globale des prédictions.\\
+
+
+\subsection{Algorithme Adam}
+
+\begin{algorithm}[h]
+\caption{Algorithme \textsc{Adam} (\cite{kingma2014})}
+\begin{algorithmic}[1]
+\REQUIRE $\alpha$ : pas d'apprentissage
+\REQUIRE $\beta_1, \beta_2 \in [0,1)$ : taux de décroissance exponentielle des moments
+\REQUIRE $f(\theta)$ : fonction objectif stochastique à minimiser
+\REQUIRE $\theta_0$ : vecteur initial des paramètres
+\STATE Initialiser $m_0 \leftarrow 0$ (1\textsuperscript{er} moment)
+\STATE Initialiser $v_0 \leftarrow 0$ (2\textsuperscript{e} moment)
+\STATE Initialiser $t \leftarrow 0$ (pas de temps)
+\WHILE{$\theta_t$ non convergé}
+    \STATE $t \leftarrow t + 1$
+    \STATE Calculer $g_t = \nabla_\theta f_t(\theta_{t-1})$ \hfill (gradient au pas $t$)
+    \STATE $m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t$ \hfill (moyenne mobile du gradient)
+    \STATE $v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$ \hfill (moyenne mobile des carrés)
+    \STATE $\hat{m}_t = \frac{m_t}{1 - \beta_1^t}$ \hfill (correction de biais du 1\textsuperscript{er} moment)
+    \STATE $\hat{v}_t = \frac{v_t}{1 - \beta_2^t}$ \hfill (correction de biais du 2\textsuperscript{e} moment)
+    \STATE $\theta_t = \theta_{t-1} - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \varepsilon}$ \hfill (mise à jour des paramètres)
+\ENDWHILE
+\RETURN $\theta_t$ (paramètres optimisés)
+\end{algorithmic}
+\end{algorithm}
+
+\noindent\textbf{Remarques.} Toutes les opérations sur les vecteurs sont effectuées élément par élément.
+Les valeurs par défaut recommandées sont $\alpha = 0{.}001$,
+$\beta_1 = 0{.}9$, $\beta_2 = 0{.}999$ et $\varepsilon = 10^{-8}$.
 
 \printbibliography
 
