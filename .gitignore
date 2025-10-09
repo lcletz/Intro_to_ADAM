@@ -7,13 +7,10 @@ __pycache__/
 # macOS
 .DS_Store
 
-# Gros datasets (éviter les accidents)
+# datasets
 *.csv
-!**/sample_*.csv  # Autoriser les petits échantillons
-data/
-datasets/
 
-# LaTeX temporaires
+# LaTeX
 *.aux
 *.bbl
 *.blg
@@ -29,4 +26,4 @@ datasets/
 *.lof
 *.nav
 *.snm
-*bbl-SAVE-ERROR
+*.bbl-SAVE-ERROR
