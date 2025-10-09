@@ -25,3 +25,5 @@ datasets/
 *.bcf
 *.run.xml
 *.toc
+*.lot
+*.lof
