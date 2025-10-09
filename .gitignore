@@ -27,3 +27,6 @@ datasets/
 *.toc
 *.lot
 *.lof
+*.nav
+*.snm
+*bbl-SAVE-ERROR
