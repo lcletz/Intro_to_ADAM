@@ -236,7 +236,25 @@ La figure~\ref{fig:test_results} présente une synthèse des performances finale
 \subsection{Base de données ""}
 
 \section{Conclusion}
-%À compléter
+
+Ce travail a permis d’étudier l’algorithme Adam à travers ses fondements
+théoriques et ses performances pratiques. Proposé par \cite{kingma2014}, Adam combine momentum et adaptation du taux d’apprentissage,
+offrant une convergence rapide et stable, même en présence de gradients
+bruités. Cependant, comme l’ont montré \cite{wilson2017}, cette
+vitesse d’optimisation ne garantit pas toujours une meilleure
+généralisation, les solutions trouvées pouvant différer de celles
+obtenues par des méthodes non adaptatives comme SGD.
+
+Les résultats expérimentaux confirment ce compromis entre rapidité et
+qualité de généralisation, suggérant qu’Adam est particulièrement adapté
+aux phases d’exploration ou d’entraînement initial, tandis que SGD reste
+préférable pour la recherche de modèles généralisables.
+
+En perspective, l’étude de variantes plus récentes d’Adam, comme
+AdamW ou RAdam, pourrait offrir un équilibre plus satisfaisant entre
+vitesse et performance finale, prolongeant ainsi la réflexion amorcée
+dans ce travail.
+
 
 \newpage
 
@@ -370,7 +388,7 @@ des carrés des gradients :
 avec $\beta_2$ proche de 1. La mise à jour est la même.\\
 
 \noindent\textbf{Régression logistique}\\
-\par La régression logistique est un type de régression dans les cas binaires. Sa fonction de perte est définit par 
+\par La régression logistique est un type de régression dans les cas binaires. Sa fonction de perte est définie par 
 $$
 L(y, \hat{y}) = -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})]
 $$  
