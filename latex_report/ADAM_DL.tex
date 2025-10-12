@@ -234,56 +234,19 @@ La figure~\ref{fig:test_results} présente une synthèse des performances finale
 \par Ces visualisations confirment que SGD et Adam maintiennent des performances robustes à travers les différentes tailles d'échantillon, tandis qu'Adagrad, malgré une convergence rapide sur le petit échantillon, voit ses performances se dégrader significativement avec l'augmentation des données.
 
 \subsection{Base de données "Heart Disease"}
-
 Pour valider les optimiseurs dans un contexte différent, nous utilisons le dataset Heart Disease, disponible sur Kaggle\footnote{\url{https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction}}. Ce dataset contient 1,025 observations de patients avec 13 caractéristiques cliniques (âge, sexe, pression artérielle, cholestérol, etc.) permettant de prédire la présence de maladie cardiaque. La variable cible est binaire : 0 pour absence de maladie, 1 pour présence. Les classes sont relativement équilibrées (49\% / 51\%).
 
-Nous utilisons un réseau de neurones avec deux couches cachées (16 et 8 neurones) et activation ReLU, suivi d'une couche de sortie avec activation sigmoid. La fonction de perte utilisée est la binary cross-entropy. L'entraînement se fait sur 100 epochs avec batch size de 32 et validation split de 20\%. Un mécanisme d'early stopping (patience=15) est implémenté pour prévenir le surapprentissage.
+Nous utilisons un réseau de neurones avec deux couches cachées (16 et 8 neurones) et activation ReLU, suivi d'une couche de sortie avec activation sigmoid. La fonction de perte utilisée est la binary cross-entropy. L'entraînement se fait sur 100 epochs avec batch size de 32 et validation split de 20\%. Un mécanisme d'early stopping (patience=10) est implémenté pour prévenir le surapprentissage.
 
-Nous entraînons le modèle avec les quatre optimiseurs en utilisant les taux d'apprentissage standards : Adam ($\eta$=0.001), SGD ($\eta$=0.01), Adagrad ($\eta$=0.01) et RMSprop ($\eta$=0.001).
+Nous entraînons le modèle avec les quatre optimiseurs en utilisant les taux d'apprentissage standards : Adam ($\eta$=0.001), SGD ($\eta$=0.01), Adagrad ($\eta$=0.01) et RMSprop ($\eta$=0.001). \\
 
-Le tableau \ref{tab:heart} présente les performances finales sur l'ensemble de test :
+\par Le tableau \ref{tab:heart} présente les performances finales sur l'ensemble de test. Les résultats révèlent que RMSprop obtient la meilleure précision (94.16\%), suivi de près par Adam (93.18\%). SGD affiche des performances nettement inférieures (80.84\%), tandis qu'Adagrad se situe en position intermédiaire (88.64\%). \\
 
-\begin{table}[h]
-\centering
-\caption{Comparaison des performances sur Heart Disease ($n$=1,025)}
-\label{tab:heart}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Optimiseur} & \textbf{Test Loss} & \textbf{Test Accuracy} & \textbf{Erreur (\%)} \\
-\midrule
-Adam     & 0.2196 & \textbf{0.9318} & 6.82 \\
-SGD      & 0.3425 & 0.8084          & 19.16 \\
-Adagrad  & 0.2946 & 0.8864          & 11.36 \\
-RMSprop  & \textbf{0.2250} & \textbf{0.9416} & \textbf{5.84} \\
-\bottomrule
-\end{tabular}
-\end{table}
+\par Graphiquement, ces observations se confirment à travers l'évolution des métriques d'entraînement et de test. La figure \ref{fig:heart_err} illustre l'évolution de l'erreur au cours des epochs, révélant les vitesses de convergence distinctes de chaque optimiseur. On observe que RMSprop et Adam convergent rapidement et régulièrement vers de faibles erreurs, tandis que SGD montre une convergence plus lente et moins stable. Adagrad converge initialement de manière rapide mais stagne ensuite. \\
 
-Les résultats révèlent que RMSprop obtient la meilleure précision (94.16\%), suivi de près par Adam (93.18\%). SGD affiche des performances nettement inférieures (80.84\%), tandis qu'Adagrad se situe en position intermédiaire (88.64\%).
+\par La figure \ref{fig:heart_loss} présente l'évolution de la perte, confirmant ces observations. \\
 
-Graphiquement, ces observations se confirment à travers l'évolution des métriques d'entraînement et de test. La figure \ref{fig:heart_err} illustre l'évolution de l'erreur au cours des epochs, révélant les vitesses de convergence distinctes de chaque optimiseur :
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{images/heart_errors.png}
-\caption{Comparaison des erreurs pour Heart Disease}
-\label{fig:heart_err}
-\end{figure}
-
-On observe que RMSprop et Adam convergent rapidement et régulièrement vers de faibles erreurs, tandis que SGD montre une convergence plus lente et moins stable. Adagrad converge initialement de manière rapide mais stagne ensuite.
-
-La figure \ref{fig:heart_loss} présente l'évolution de la perte, confirmant ces observations :
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{images/heart_losses.png}
-\caption{Comparaison des pertes pour Heart Disease}
-\label{fig:heart_loss}
-\end{figure}
-
-Ces résultats contrastent fortement avec ceux obtenus sur Credit Card où Adam et SGD affichaient des performances quasi-identiques (99.91\%). Cette différence s'explique par plusieurs facteurs : la taille réduite du dataset (1,025 vs 100,000 observations) où SGD souffre davantage du bruit stochastique, et la dimensionnalité accrue (13 vs 2 features) qui favorise l'adaptation locale du taux d'apprentissage. Les méthodes adaptatives (RMSprop, Adam) démontrent ainsi leur supériorité sur des datasets de taille modeste et de dimension élevée, confirmant leur robustesse aux hyperparamètres et leur efficacité face à des gradients hétérogènes.
-
-
+\par Ces résultats contrastent fortement avec ceux obtenus sur Credit Card où Adam et SGD affichaient des performances quasi-identiques (99.91\%). Cette différence s'explique par plusieurs facteurs : la taille réduite du dataset (1,025 vs 100,000 observations) où SGD souffre davantage du bruit stochastique, et la dimensionnalité accrue (13 vs 2 features) qui favorise l'adaptation locale du taux d'apprentissage. Les méthodes adaptatives (RMSprop, Adam) démontrent ainsi leur supériorité sur des datasets de taille modeste et de dimension élevée, confirmant leur robustesse aux hyperparamètres et leur efficacité face à des gradients hétérogènes.
 \section{Conclusion}
 
 Ce travail a permis d’étudier l’algorithme Adam à travers ses fondements
@@ -347,6 +310,20 @@ dans ce travail.
 \label{fig:test_results}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{images/heart_errors.png}
+\caption{Comparaison des erreurs pour Heart Disease}
+\label{fig:heart_err}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{images/heart_losses.png}
+\caption{Comparaison des pertes pour Heart Disease}
+\label{fig:heart_loss}
+\end{figure}
+
 \subsection{Tableaux}
 
 \begin{table}[H]
@@ -390,6 +367,27 @@ RMSprop   & 0.0059 & 0.9987 & 1.30 \\
 \end{tabular}
 \caption{Comparaison des performances sur l'échantillon de taille $n=100\,000$}
 \label{tab:results_100k}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\rowcolor{lightgray}
+\textbf{Optimiseur} & \textbf{Test Loss} & \textbf{Test Accuracy} & \textbf{Erreur (\%)} \\
+\hline
+Adam      & 0.2196 & 0.9318 & 6.82 \\
+\hline
+SGD       & 0.3425 & 0.8084 & 19.16 \\
+\hline
+Adagrad   & 0.2946 & 0.8864 & 11.36 \\
+\hline
+\rowcolor{lightgray!50}
+RMSprop   & \textbf{0.2250} & \textbf{0.9416} & \textbf{5.84} \\
+\hline
+\end{tabular}
+\caption{Comparaison des performances sur Heart Disease ($n=1\,025$)}
+\label{tab:heart}
 \end{table}
 
 \subsection{Définitions et formules}
