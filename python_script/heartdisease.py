@@ -117,16 +117,16 @@ for name, optimizer in optimizers.items():
 # Configuration des couleurs pour les graphiques
 
 colors = {
-    'Adam': '#2E8B57',  # Vert forêt
-    'SGD': '#8A2BE2',  # Bleu violet
-    'Adagrad': '#32CD32',  # Vert lime
-    'RMSprop': '#DDA0DD'  # Violet clair
+    'Adam': '#2E8B57',  
+    'SGD': '#8A2BE2',  
+    'Adagrad': '#32CD32',  
+    'RMSprop': '#DDA0DD'  
 }
 
 #%% 
 # Figure 1 : comparaison des erreurs d'entraînement et de test
 
-fig, axes = plt.subplots(1, 2, figsize=(14, 6))  # 2 subplots côte à côte
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))  
 
 # Subplot 1 : évolution de l'erreur d'entraînement
 axes[0].set_title('Erreur d\'entraînement - Heart Disease', 
@@ -140,8 +140,8 @@ for name, res in results.items():
 
 axes[0].set_xlabel('Epochs', fontsize=12)
 axes[0].set_ylabel('Erreur', fontsize=12)
-axes[0].legend(fontsize=11)  # Légende
-axes[0].grid(True, alpha=0.3)  # Grille pour lisibilité
+axes[0].legend(fontsize=11)  
+axes[0].grid(True, alpha=0.3)  
 
 # Subplot 2 : erreur de test (barplot)
 axes[1].set_title('Erreur de test - Heart Disease', 
@@ -151,7 +151,7 @@ test_errors = [(1 - res['test_accuracy']) * 100 for res in results.values()]  # 
 optimizer_names = list(results.keys())
 
 bars = axes[1].bar(optimizer_names, test_errors,
-                   color=[colors[n] for n in optimizer_names], alpha=0.7)  # Barplot
+                   color=[colors[n] for n in optimizer_names], alpha=0.7)  
 axes[1].set_ylabel('Erreur (%)', fontsize=12)
 axes[1].grid(True, alpha=0.3, axis='y')
 
@@ -168,7 +168,7 @@ plt.show()
 #%% 
 # Figure 2 : comparaison des pertes d'entraînement et de test
 
-fig, axes = plt.subplots(1, 2, figsize=(14, 6))  # 2 subplots côte à côte
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))  
 
 # Subplot 1 : évolution de la perte d'entraînement
 axes[0].set_title('Perte d\'entraînement - Heart Disease', 
@@ -192,7 +192,7 @@ axes[1].set_title('Perte de test - Heart Disease',
 test_losses = [res['test_loss'] for res in results.values()]  # Extraction des pertes de test
 
 bars = axes[1].bar(optimizer_names, test_losses,
-                  color=[colors[n] for n in optimizer_names], alpha=0.7)  # Barplot
+                  color=[colors[n] for n in optimizer_names], alpha=0.7)  
 axes[1].set_ylabel('Perte', fontsize=12)
 axes[1].grid(True, alpha=0.3, axis='y')
 
