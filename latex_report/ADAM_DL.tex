@@ -234,7 +234,7 @@ La figure~\ref{fig:test_results} présente une synthèse des performances finale
 \par Ces visualisations confirment que SGD et Adam maintiennent des performances robustes à travers les différentes tailles d'échantillon, tandis qu'Adagrad, malgré une convergence rapide sur le petit échantillon, voit ses performances se dégrader significativement avec l'augmentation des données.
 
 \subsection{Base de données "Heart Disease"}
-Pour valider les optimiseurs dans un contexte différent, nous utilisons le dataset Heart Disease, disponible sur Kaggle\footnote{\url{https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction}}. Ce dataset contient 1,025 observations de patients avec 13 caractéristiques cliniques (âge, sexe, pression artérielle, cholestérol, etc.) permettant de prédire la présence de maladie cardiaque. La variable cible est binaire : 0 pour absence de maladie, 1 pour présence. Les classes sont relativement équilibrées (49\% / 51\%).
+Pour valider les optimiseurs dans un contexte différent, nous utilisons le dataset Heart Disease, disponible sur Kaggle\footnote{\url{https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction}}. Ce dataset contient 1025 observations de patients avec 13 caractéristiques cliniques (âge, sexe, pression artérielle, cholestérol, etc.) permettant de prédire la présence de maladie cardiaque. La variable cible est binaire : 0 pour absence de maladie, 1 pour présence. Les classes sont relativement équilibrées (49\% / 51\%).
 
 Nous utilisons un réseau de neurones avec deux couches cachées (16 et 8 neurones) et activation ReLU, suivi d'une couche de sortie avec activation sigmoid. La fonction de perte utilisée est la binary cross-entropy. L'entraînement se fait sur 100 epochs avec batch size de 32 et validation split de 20\%. Un mécanisme d'early stopping (patience=10) est implémenté pour prévenir le surapprentissage.
 
@@ -246,7 +246,7 @@ Nous entraînons le modèle avec les quatre optimiseurs en utilisant les taux d'
 
 \par La figure \ref{fig:heart_loss} présente l'évolution de la perte, confirmant ces observations.
 
-\par Ces résultats contrastent fortement avec ceux obtenus sur Credit Card où Adam et SGD affichaient des performances quasi-identiques (99.91\%). Cette différence s'explique par plusieurs facteurs : la taille réduite du dataset (1,025 vs 100,000 observations) où SGD souffre davantage du bruit stochastique, et la dimensionnalité accrue (13 vs 2 features) qui favorise l'adaptation locale du taux d'apprentissage. Les méthodes adaptatives (RMSprop, Adam) démontrent ainsi leur supériorité sur des datasets de taille modeste et de dimension élevée, confirmant leur robustesse aux hyperparamètres et leur efficacité face à des gradients hétérogènes.
+\par Ces résultats contrastent fortement avec ceux obtenus sur Credit Card où Adam et SGD affichaient des performances quasi-identiques (99.91\%). Cette différence s'explique par plusieurs facteurs : la taille réduite du dataset (1025 vs 100 000 observations) où SGD souffre davantage du bruit stochastique, et la dimensionnalité accrue (13 vs 2 features) qui favorise l'adaptation locale du taux d'apprentissage. Les méthodes adaptatives (RMSprop, Adam) démontrent ainsi leur supériorité sur des datasets de taille modeste et de dimension élevée, confirmant leur robustesse aux hyperparamètres et leur efficacité face à des gradients hétérogènes.
 \section{Conclusion}
 
 Ce travail a étudié l’algorithme Adam à travers ses fondements
