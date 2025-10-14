@@ -226,7 +226,7 @@ Les tableaux~\ref{tab:results_10k} et~\ref{tab:results_100k} révèlent plusieur
 \par Sur un $100\,000$-échantillon, Adam domine de peu avec une précision remarquable de 99.91\% et une perte de test de 0.0033. Adagrad et RMSprop montrent de meilleurs performances sur ce plus grand échantillon.
 \par Il semble ainsi que l'augmentation de la taille d'échantillon favorise nettement les performances de chaque modèle, confirmant leur robustesse sur des datasets plus importants, pourtant nous n'apercevons pas d'amélioration évidente pour Adam.
 \par Graphiquement, ces observations se confirment à travers l'évolution des métriques d'entraînement et de test. La figure~\ref{fig:training_comparison} illustre l'évolution de l'erreur d'entraînement (cf annexes \ref{annexes}) au cours des \textit{epochs}, révélant les vitesses de convergence distinctes de chaque optimiseur.
-\par On observe qu'Adagrad converge rapidement vers une faible erreur initiale, mais stagne ensuite, tandis qu'Adam continue à améliorer l'erreur au fil des \textit{epochs}. Adagrad converge le plus lentement, RMSprop plus rapidement, et à partir de 2 epochs, SGD suit la même trajectoire qu'Adam.
+\par On observe qu'Adagrad converge rapidement vers une faible erreur initiale, mais stagne ensuite, tandis qu'Adam continue à améliorer l'erreur au fil des \textit{epochs}. Adagrad converge le plus lentement, RMSprop plus rapidement, et à partir de 2 epochs, SGD ne présente pas de claire convergence.
 La figure~\ref{fig:test_results} présente une synthèse des performances finales de test, mettant en évidence les différences de généralisation entre les méthodes selon la taille de l'échantillon.
 \par Ces visualisations confirment qu'Adam maintient des performances robustes à travers les différentes tailles d'échantillon, tandis qu'SGD, malgré une convergence similaire sur le grand échantillon, voit ses performances se dégrader légèrement avec l'augmentation des données.
 
@@ -241,7 +241,8 @@ Nous utilisons un réseau de neurones avec deux couches cachées (16 et 8 neuron
 
 \par La figure \ref{fig:heart_loss} présente l'évolution de la perte, confirmant ces observations.
 
-\par Ces résultats contrastent fortement avec ceux obtenus sur Credit Card où Adam et SGD affichaient des performances quasi-identiques (99.91\%). Cette différence s'explique par plusieurs facteurs : la taille réduite du dataset (1025 vs 100 000 observations) où SGD souffre davantage du bruit stochastique, et la dimensionnalité accrue (13 vs 2 features) qui favorise l'adaptation locale du taux d'apprentissage. Les méthodes adaptatives (RMSprop, Adam) démontrent ainsi leur supériorité sur des datasets de taille modeste et de dimension élevée, confirmant leur robustesse aux hyperparamètres et leur efficacité face à des gradients hétérogènes.
+\par Ces résultats contrastent fortement avec ceux obtenus sur Credit Card où Adam, Adagrad et RMSprop affichaient des performances quasi-identiques (99.91\%). Cette différence s'explique par plusieurs facteurs : la taille réduite du dataset (1025 vs 100 000 observations) où SGD souffre davantage du bruit stochastique, et la dimensionnalité accrue (13 vs 2 features) qui favorise l'adaptation locale du taux d'apprentissage. Les méthodes adaptatives (RMSprop, Adam) démontrent ainsi leur supériorité sur des datasets de taille modeste et de dimension élevée, confirmant leur robustesse aux hyperparamètres et leur efficacité face à des gradients hétérogènes.
+
 \section{Conclusion}
 
 Ce travail a étudié l’algorithme Adam à travers ses fondements
