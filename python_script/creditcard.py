@@ -14,8 +14,8 @@ plt.ion()
 #%%
 df = pd.read_csv('creditcard.csv')
 
-#sample_size = 10000    
-sample_size = 100000
+sample_size = 10000    
+#sample_size = 100000
 df_sample = df.sample(n=sample_size, random_state=42)
 
 X = df_sample[['V14', 'Amount']].values 
@@ -47,8 +47,8 @@ def create_model():
 #%%
 optimizers = {        # dictionary of optimizers with learning rates 0.001
     'Adam': keras.optimizers.Adam(learning_rate=0.001),
-    'SGD': keras.optimizers.SGD(learning_rate=0.001),
-    'Adagrad': keras.optimizers.Adagrad(learning_rate=0.001),
+    'SGD': keras.optimizers.SGD(learning_rate=0.01),
+    'Adagrad': keras.optimizers.Adagrad(learning_rate=0.01),
     'RMSprop': keras.optimizers.RMSprop(learning_rate=0.001)
 }
 
