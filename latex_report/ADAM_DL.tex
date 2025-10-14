@@ -144,7 +144,7 @@ $m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t$ et
 $v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2$,
 où $m_t$ représente la moyenne et $v_t$ la variance du gradient. Les coefficients usuels sont
 $\beta_1=0.9$ et $\beta_2=0.999$. Comme $m_0$ et $v_0$ sont initialisés
-à zéro, Kingma et Ba introduisent une correction de biais :
+à zéro, \cite{kingma2014} introduisent une correction de biais :
 $\hat{m}_t = m_t/(1-\beta_1^t)$ et
 $\hat{v}_t = v_t/(1-\beta_2^t)$.
 
@@ -167,7 +167,7 @@ gradient, réduisant les oscillations et stabilisant l’entraînement.
 
 Adam présente plusieurs propriétés remarquables. Il est invariant à
 l’échelle des gradients, son pas est borné et contrôlé par $\alpha$, et
-il reste peu sensible aux hyperparamètres. Kingma et Ba montrent, dans
+il reste peu sensible aux hyperparamètres. \cite{kingma2014} montrent, dans
 le cadre convexe, un regret en $\mathcal{O}(\sqrt{T})$, équivalent à
 AdaGrad mais plus stable sur des objectifs non stationnaires.
 
@@ -253,13 +253,16 @@ d’apprentissage, assurant une convergence rapide et stable, même en
 présence de gradients bruités. Cependant, comme l’ont montré
 \cite{wilson2017}, cette efficacité ne garantit pas toujours une
 meilleure généralisation, les solutions obtenues pouvant différer de
-celles issues de méthodes non adaptatives comme SGD. En effet, les performances des méthodes non-adaptatives dépendent de la taille de l'échantillon mais également de la qualité des données (eg. équilibre des classes).
+celles issues de méthodes non adaptatives comme SGD. Nos expériences montrent d'ailleurs que les performances des méthodes non-adaptatives dépendent fortement des caractéristiques du jeu de données, comme sa taille ou sa complexité.
+
 
 Les expériences confirment ce compromis entre rapidité et
 généralisation, suggérant qu’Adam est bien adapté aux phases
 d’entraînement initial, tandis que SGD demeure plus fiable pour la
 généralisation. L’étude de variantes récentes, telles qu’AdamW ou
 RAdam, pourrait permettre un meilleur équilibre entre ces deux aspects.
+
+
 
 
 \newpage
