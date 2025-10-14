@@ -235,7 +235,7 @@ Pour valider les optimiseurs dans un contexte différent, nous utilisons le data
 
 Nous utilisons un réseau de neurones avec deux couches cachées (16 et 8 neurones) et activation ReLU, suivi d'une couche de sortie avec activation sigmoid. La fonction de perte utilisée est la binary cross-entropy. L'entraînement se fait sur 100 epochs avec batch size de 32 et validation split de 20\%. Un mécanisme d'early stopping (patience=10) est implémenté pour prévenir le surapprentissage.
 
-Nous entraînons le modèle avec les quatre optimiseurs en utilisant les taux d'apprentissage standards : Adam ($\eta$=0.001), SGD ($\eta$=0.01), Adagrad ($\eta$=0.01) et RMSprop ($\eta$=0.001). \\
+Nous entraînons le modèle avec les quatre optimiseurs en utilisant les taux d'apprentissage standards recommandés dans la littérature \cite{ruder2016overview} : Adam ($\eta$=0.001), SGD ($\eta$=0.01), Adagrad ($\eta$=0.01) et RMSprop ($\eta$=0.001).
 
 \par Le tableau \ref{tab:heart} présente les performances finales sur l'ensemble de test. Les résultats révèlent que RMSprop obtient la meilleure précision (94.16\%), suivi de près par Adam (93.18\%). SGD affiche des performances nettement inférieures (80.84\%), tandis qu'Adagrad se situe en position intermédiaire (88.64\%). \\
 
