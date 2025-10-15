@@ -223,11 +223,11 @@ Pour comparer les performances des quatre méthodes citées, nous commençons av
 
 Les tableaux~\ref{tab:results_10k} et~\ref{tab:results_100k} révèlent plusieurs tendances intéressantes : 
 \par Sur l'échantillon de $10\,000$-observations, toutes les méthodes atteignent une précision de test identique de 99.77\%. Cependant, dans ce contexte de classes très déséquilibrées, la perte de test est un indicateur plus discriminant. Sur ce critère, Adam se démarque nettement avec une perte de 0.0057, significativement plus faible que celle des autres optimiseurs.
-\par Sur un $100\,000$-échantillon, Adam se distingue comme le meilleur optimiseur avec une précision de 99.91\% et la plus faible perte de test (0.0033). On note également que les performances d'Adagrad et RMSprop s'améliorent considérablement par rapport au plus petit échantillon, bien qu'elles restent légèrement en deçà de celles d'Adam.
+\par Sur un $100\,000$-échantillon, Adam se distingue comme le meilleur optimiseur avec une précision de 99.91\% et la plus faible perte de test (0.0033). Nous notons également que les performances d'Adagrad et RMSprop s'améliorent considérablement par rapport au plus petit échantillon, bien qu'elles restent légèrement en deçà de celles d'Adam.
 
 \par Il semble ainsi que l'augmentation de la taille d'échantillon favorise nettement les performances de chaque modèle, confirmant leur robustesse sur des datasets plus importants, pourtant nous n'apercevons pas d'amélioration évidente pour Adam.
 \par Graphiquement, ces observations se confirment à travers l'évolution des métriques d'entraînement et de test. La figure~\ref{fig:training_comparison} illustre l'évolution de l'erreur d'entraînement (cf annexes \ref{annexes}) au cours des \textit{epochs}, révélant les vitesses de convergence distinctes de chaque optimiseur.
-\par On observe qu'Adagrad converge rapidement vers une faible erreur initiale, mais stagne ensuite, tandis qu'Adam continue à améliorer l'erreur au fil des \textit{epochs}. Adagrad converge le plus lentement, RMSprop plus rapidement, et à partir de 2 epochs, SGD ne présente pas de claire convergence.
+\par On observe qu'Adagrad converge rapidement vers une faible erreur initiale, mais stagne ensuite, tandis qu'Adam continue à améliorer l'erreur au fil des \textit{epochs}. Adagrad converge le plus lentement, RMSprop un peu plus rapidement, et SGD converge rapidement dès l’initialisation à cause du choix du learning rate, ce qui atténue les phénomènes de divergence locale aperçus dans les autres méthodes.
 La figure~\ref{fig:test_results} présente une synthèse des performances finales de test, mettant en évidence les différences de généralisation entre les méthodes selon la taille de l'échantillon.
 \par Ces visualisations confirment qu'Adam maintient des performances robustes à travers les différentes tailles d'échantillon, tandis qu'SGD, malgré une convergence similaire sur le grand échantillon, voit ses performances se dégrader légèrement avec l'augmentation des données.
 
@@ -276,17 +276,17 @@ Afin de garantir la reproductibilité de nos résultats, l'ensemble du code util
 \begin{figure}[H]
 \centering
 \begin{subfigure}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{images/training_error_n10k.png}
-    \caption[Erreur d'entraînement (n=10k)]{Erreur d'entraînement}
-    \label{fig:training_10k}
+    \includegraphics[width=\textwidth]{images/training_error_n100k.png}
+    \caption[Erreur d'entraînement (n=100k)]{Erreur d'entraînement ($n=100\,000$)}
+    \label{fig:training_100k}
 \end{subfigure}
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
     \includegraphics[width=\textwidth]{images/training_loss_n10k.png}
-    \caption[Perte d'entraînement (n=10k)]{Perte d'entraînement}
+    \caption[Perte d'entraînement (n=10k)]{Perte d'entraînement ($n=10\,000$)}
     \label{fig:loss_10k}
 \end{subfigure}
-\caption{Comparaison des métriques d'entraînement pour $n=10\,000$}
+\caption{Comparaison des métriques d'entraînement}
 \label{fig:training_comparison}
 \end{figure}
 
