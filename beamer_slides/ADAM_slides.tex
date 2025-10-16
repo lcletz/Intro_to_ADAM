@@ -1,8 +1,10 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{csquotes}
 \usepackage{amssymb}
 \usepackage{graphicx}
 
@@ -14,6 +16,8 @@
 
 \usepackage[style=authoryear-comp, backend=biber, natbib=false]{biblatex}
 \addbibresource{../latex_report/references.bib}
+
+\setbeamertemplate{footline}[frame number]
 
 \setbeamertemplate{bibliography item}{}
 \setbeamerfont{bibliography entry author}{size=\small, series=\bfseries}
@@ -28,13 +32,22 @@
 
 \title{ADAM pour le Deep Learning}
 \author{ACHIQ Aya, CLETZ Laura, EL MAZZOUJI Wahel}
-\date{Octobre 2025}
+
+\date{\footnotesize Octobre 2025}
+
+\titlegraphic{ 
+\centering
+\includegraphics[height=1.2cm]{../latex_report/images/UM.png}\hspace{0.3cm}%
+\includegraphics[height=1.2cm]{../latex_report/images/SSD.png}\hspace{0.3cm}%
+\includegraphics[height=1.2cm]{../latex_report/images/FdS.jpg}
+}
 
 \begin{document}
 
 \begin{frame}
 
   \titlepage
+  %logo 
 
 \end{frame}
 
@@ -44,26 +57,46 @@
 
 \end{frame}
 
-\section{Introduction}
+\section{Cadre et enjeux}
 
-\begin{frame}{Introduction}
+\begin{frame}{Cadre}
+  %introduction du rapport
+  \cite{kingma2014}
+\end{frame}
 
-  % test
-  \begin{itemize}
-    \item ADAM = \textbf{Ada}ptive \textbf{M}oment Estimation
-    \item blabla
-  \end{itemize}
-  
+\begin{frame}{Optimisation en Deep Learning}
+  %méthodes envisageables adaptives et non adaptives
+\end{frame}
+
+\section{Adam}
+
+\begin{frame}{Algorithme}
+  %kingma et ba 2014
 \end{frame}
 
 \begin{frame}{Algorithme}
-  blablabla
+
 \end{frame}
 
-\section{blablabla}
+\section{Forces et faiblesses}
 
-\begin{frame}{blablabla}
-  blablabla
+\begin{frame}{Limites théoriques}
+  %wilson et al 2017
+\end{frame}
+
+\begin{frame}{Expérimentation}
+  %graphe 1
+\end{frame}
+
+\begin{frame}{Expérimentation}
+  %graphe 2
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Conclusion}
+  %qu'a-t-on appris ?
+  %perspectives (autres algo)
 \end{frame}
 
 \begin{frame}{Références}
