@@ -56,33 +56,90 @@
   \tableofcontents
 
 \end{frame}
-
 \section{Cadre et enjeux}
 
-\begin{frame}{Cadre}
-  %introduction du rapport
-  \cite{kingma2014}
+\begin{frame}{Enjeux et cadre statistique}
+
+\begin{itemize}
+  \item L’optimisation est \textbf{centrale} en Deep Learning :
+        ajuster les poids $\theta$ pour minimiser une perte $\mathcal{L}(\theta)$.
+  \medskip
+  \item Méthodes classiques :
+        \begin{itemize}
+          \item \textbf{SGD}, Momentum ;
+          \item Sensibles au \textbf{taux d’apprentissage} et aux gradients bruités.
+        \end{itemize}
+  \medskip
+  \item Enjeux :
+        \begin{itemize}
+          \item Convergence rapide ;
+          \item Stabilité numérique ;
+          \item Bonne généralisation.
+        \end{itemize}
+  \medskip
+  \item Méthodes \textbf{adaptatives} :
+        AdaGrad, RMSProp, puis \textbf{Adam} \cite{kingma2014}.
+\end{itemize}
+
 \end{frame}
 
-\begin{frame}{Optimisation en Deep Learning}
-  %méthodes envisageables adaptives et non adaptives
+%-------------------------------------------------------------
+
+\begin{frame}{Principe de l’algorithme Adam}
+
+\begin{block}{Idée clé}
+\textbf{Adam = Adaptive Moment Estimation} :
+combine le \textcolor{mygreen}{momentum} et une adaptation du pas pour chaque paramètre.
+\end{block}
+
+\bigskip
+
+\begin{itemize}
+  \item Moyennes mobiles :
+    \[
+      m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t, \quad
+      v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2
+    \]
+  \item Mise à jour :
+    \[
+      \theta_t = \theta_{t-1} - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \varepsilon}
+    \]
+  \item Valeurs typiques : $\alpha{=}0.001$, $\beta_1{=}0.9$, $\beta_2{=}0.999$.
+\end{itemize}
+
+\bigskip
+
+\textbf{Propriétés :}
+invariance d’échelle, stabilité, faible sensibilité aux hyperparamètres.
+
 \end{frame}
 
-\section{Adam}
-
-\begin{frame}{Algorithme}
-  %kingma et ba 2014
-\end{frame}
-
-\begin{frame}{Algorithme}
-
-\end{frame}
+%-------------------------------------------------------------
 
 \section{Forces et faiblesses}
 
-\begin{frame}{Limites théoriques}
-  %wilson et al 2017
+\begin{frame}{Objectifs et limites d’Adam}
+
+\begin{columns}[T]
+\column{0.48\textwidth}
+\textbf{Objectifs :}
+\begin{itemize}
+  \item Accélérer la convergence avec momentum et adaptation des pas ;
+  \item Stabiliser l’apprentissage en présence de gradients bruités ;
+  \item Adapter automatiquement le taux d’apprentissage pour chaque paramètre.
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{Limites :}
+\begin{itemize}
+  \item Moindre généralisation que SGD \cite{wilson2017} ;
+  \item Convergence vers $\|w\|_\infty$ minimale ;
+  \item Compromis entre vitesse et généralisation.
+\end{itemize}
+\end{columns}
+
 \end{frame}
+
 
 \begin{frame}{Expérimentation}
   %graphe 1
@@ -97,6 +154,7 @@
 \begin{frame}{Conclusion}
   %qu'a-t-on appris ?
   %perspectives (autres algo)
+  %\textbf{Ouvertures :} AdamW, RAdam.
 \end{frame}
 
 \begin{frame}{Références}
