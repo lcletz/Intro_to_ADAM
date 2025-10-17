@@ -56,30 +56,70 @@
   \tableofcontents
 
 \end{frame}
-\section{Cadre et enjeux}
 
-\begin{frame}{Enjeux et cadre statistique}
+\section{Enjeux et cadre statistique}
 
-\begin{itemize}
-  \item L’optimisation est \textbf{centrale} en Deep Learning :
-        ajuster les poids $\theta$ pour minimiser une perte $\mathcal{L}(\theta)$.
-  \medskip
-  \item Méthodes classiques :
-        \begin{itemize}
-          \item \textbf{SGD}, Momentum ;
-          \item Sensibles au \textbf{taux d’apprentissage} et aux gradients bruités.
-        \end{itemize}
-  \medskip
-  \item Enjeux :
-        \begin{itemize}
-          \item Convergence rapide ;
-          \item Stabilité numérique ;
-          \item Bonne généralisation.
-        \end{itemize}
-  \medskip
-  \item Méthodes \textbf{adaptatives} :
-        AdaGrad, RMSProp, puis \textbf{Adam} \cite{kingma2014}.
-\end{itemize}
+\begin{frame}{Optimisation en Deep Learning}
+
+  \begin{itemize}
+    \item But : minimiser le fonction de \textbf{perte} $\mathcal{L}(\theta)$ pour un poids $\theta$.
+    \medskip
+    \item Enjeux : 
+    \begin{itemize}
+      \item Convergence rapide ;
+      \item Stabilité numérique ;
+      \item Bonne généralisation.
+    \end{itemize}
+  \end{itemize}
+  
+  \begin{center}
+    \includegraphics[width=\textwidth]{frise1.png}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}{Optimisation en Deep Learning}
+
+  \begin{itemize}
+    \item But : minimiser le fonction de \textbf{perte} $\mathcal{L}(\theta)$ pour un poids $\theta$.
+    \medskip
+    \item Enjeux : 
+    \begin{itemize}
+      \item Convergence rapide ;
+      \item Stabilité numérique ;
+      \item Bonne généralisation.
+    \end{itemize}
+  \end{itemize}
+  
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{frise2.png}
+  \end{center}
+
+  \begin{center}
+    ADAM, \cite{kingma2014}
+  \end{center}
+  \begin{itemize}
+    \item Est-ce l’algorithme d’optimisation idéal pour le Deep Learning ?
+  \end{itemize}
+
+\end{frame}
+
+%-------------------------------------------------------------
+
+\begin{frame}{Notions d'optimisation}
+
+  \begin{itemize}
+    \item Notations :
+    \begin{itemize}
+      \item Le gradient $g_t = \nabla_{\theta} \mathcal{L}(\theta_{t-1})$ ;
+      \item Le \textbf{learning rate} $\eta$ : contrôle la taille des \textbf{pas} de mise à jour des paramètres, diffère suivant la méthode (\cite{ruder2016overview}) ;
+      \item Le \textbf{momentum} $m_t$ : lissage de la trajectoire des gradients, calculé à partir de $g_{t-1}$.
+    \end{itemize}
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{SGD_RMSProp.png}
+  \end{center}
 
 \end{frame}
 
@@ -152,9 +192,26 @@ invariance d’échelle, stabilité, faible sensibilité aux hyperparamètres.
 \section{Conclusion}
 
 \begin{frame}{Conclusion}
-  %qu'a-t-on appris ?
-  %perspectives (autres algo)
-  %\textbf{Ouvertures :} AdamW, RAdam.
+
+  \begin{itemize}
+    \item Avantages d’Adam : 
+    \begin{itemize}
+      \item rapidité à l'initialisation ;
+      \item convergence rapide par momentum ;
+      \item stabilité numérique en présence de gradients bruités ;
+      \item adaptation automatique des pas.
+    \end{itemize}
+    \item Limites d’Adam : 
+    \begin{itemize}
+      \item faible capacité de généralisation (surapprentissage) ;
+      \item dépendance de la qualité des données.
+    \end{itemize}
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{frise3.png}
+  \end{center}
+
 \end{frame}
 
 \begin{frame}{Références}
