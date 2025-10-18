@@ -181,12 +181,127 @@ invariance d’échelle, stabilité, faible sensibilité aux hyperparamètres.
 \end{frame}
 
 
-\begin{frame}{Expérimentation}
-  %graphe 1
+\begin{frame}{Expérimentation : Méthodologie}
+
+\begin{columns}[T]
+
+\column{0.48\textwidth}
+\begin{block}{Credit Card}
+\small
+\begin{itemize}
+  \item Taille : \textbf{10k / 100k}
+  \item Features : \textbf{2} 
+  \item Classes : Déséquilibrées
+  \item Réseau : {[}2→8→4→1{]}
+\end{itemize}
+\textcolor{mygreen}{$\rightarrow$ Dataset large, simple}
+\end{block}
+
+\column{0.48\textwidth}
+\begin{block}{Heart Disease}
+\small
+\begin{itemize}
+  \item Taille : \textbf{1025}
+  \item Features : \textbf{13}
+  \item Classes : Équilibrées
+  \item Réseau : {[}13→16→8→1{]}
+\end{itemize}
+\textcolor{mygreen}{$\rightarrow$ Dataset petit, complexe}
+\end{block}
+
+\end{columns}
+
+\vspace{0.5cm}
+
+\textbf{Optimiseurs :} Adam, SGD, Adagrad, RMSprop \\
+\textbf{Learning rates :} 0.001 (Adam/RMSprop), 0.01 (SGD/Adagrad)
+
 \end{frame}
 
-\begin{frame}{Expérimentation}
-  %graphe 2
+\begin{frame}{Credit Card Fraud Detection}
+
+\begin{columns}[T]
+
+\column{0.48\textwidth}
+\begin{center}
+\textbf{n = 10~000}
+\end{center}
+\vspace{-0.7cm}
+\begin{center}
+\footnotesize
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Optimiseur} & \textbf{Loss} & \textbf{Erreur (\%)} \\
+\hline
+Adam & \textcolor{mygreen}{\textbf{0.0057}} & 0.23 \\
+SGD & 0.0224 & 0.23 \\
+Adagrad & 0.0271 & 0.23 \\
+RMSprop & 0.0167 & 0.23 \\
+\hline
+\end{tabular}
+\end{center}
+
+\column{0.48\textwidth}
+\begin{center}
+\textbf{n = 100~000}
+\end{center}
+\vspace{-0.7cm}
+\begin{center}
+\footnotesize
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Optimiseur} & \textbf{Loss} & \textbf{Erreur (\%)} \\
+\hline
+Adam & \textcolor{mygreen}{\textbf{0.0033}} & \textcolor{mygreen}{\textbf{0.09}} \\
+SGD & 0.0046 & 0.14 \\
+Adagrad & 0.0042 & 0.10 \\
+RMSprop & 0.0045 & 0.10 \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{columns}
+
+\vspace{0.2cm} 
+\begin{block}{Observations}
+\begin{itemize}
+  \item \textbf{n=10k :} Tous à 0.23\% d'erreur, mais la \textit{loss} révèle qu'Adam optimise mieux (0.0057)
+  \item \textbf{n=100k :} Adam se détache nettement (0.09\% d'erreur, loss 0.0033)
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Heart Disease}
+
+\begin{center}
+\textbf{n = 1~025}
+\end{center}
+
+\vspace{-0.1cm}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Optimiseur} & \textbf{Test Loss} & \textbf{Test Accuracy} & \textbf{Erreur (\%)} \\
+\hline
+Adam & 0.2196 & 0.9318 & 6.82 \\
+SGD & 0.3425 & 0.8084 & \textcolor{red}{\textbf{19.16}} \\
+Adagrad & 0.2946 & 0.8864 & 11.36 \\
+RMSprop & \textbf{0.2250} & \textbf{0.9416} & \textcolor{mygreen}{\textbf{5.84}} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+
+\begin{block}{Observations}
+\begin{itemize}
+  \item \textbf{Gros écarts} : RMSprop meilleur (5.84\%), Adam proche (6.82\%), SGD s'effondre (19.16\%)
+  \item Dataset petit (1k) + haute dimension (13D) $\rightarrow$ favorise les méthodes adaptatives
+\end{itemize}
+\end{block}
+
 \end{frame}
 
 \section{Conclusion}
