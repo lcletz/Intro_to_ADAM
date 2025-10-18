@@ -129,7 +129,7 @@
 
 \begin{block}{Idée clé}
 \textbf{Adam = Adaptive Moment Estimation} :
-combine le \textcolor{mygreen}{momentum} et une adaptation du pas pour chaque paramètre.
+combine le \textcolor{mygreen}{momentum} et une \textcolor{mygreen}{adaptation du pas} pour chaque paramètre.
 \end{block}
 
 \bigskip
@@ -164,9 +164,9 @@ invariance d’échelle, stabilité, faible sensibilité aux hyperparamètres.
 \column{0.48\textwidth}
 \textbf{Objectifs :}
 \begin{itemize}
-  \item Accélérer la convergence avec momentum et adaptation des pas ;
-  \item Stabiliser l’apprentissage en présence de gradients bruités ;
-  \item Adapter automatiquement le taux d’apprentissage pour chaque paramètre.
+  \item Améliorer la convergence en combinant momentum et taux d’apprentissage adaptatif ;
+  \item Stabiliser l’apprentissage, même lorsque les gradients sont bruités ;
+  \item Réduire la sensibilité aux hyperparamètres grâce à l’adaptation automatique des pas.
 \end{itemize}
 
 \column{0.48\textwidth}
